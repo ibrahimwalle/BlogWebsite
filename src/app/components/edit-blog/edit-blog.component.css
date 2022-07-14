@@ -1,0 +1,103 @@
+
+/* Select Form Styling */
+.selectForm{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+.selectForm > div,select,input{
+    margin: 1em 0;
+}
+.selectForm > div{
+    position: relative;
+}
+.selectInput{
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 100%;
+    padding: 1.25em;
+}
+
+/*Edit Form Styling */
+.editForm{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.taGroup{
+    width: 65%;
+}
+.inputGroup{
+    position: relative;
+    margin: 0 1em;
+}
+.moreDetails{
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.inputArea{
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 100%;
+    padding: 1.25em;
+    resize: none
+}
+.btn{
+    margin-top: 1em;
+    padding: 1em 2em;
+}
+.taLabel{
+    font-weight: 600;
+    padding: 0.5em;
+}
+
+
+/* Floating Labels */
+.inputLabel{
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 1.5%;
+    transform: translateY(-50%);
+    transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1), top 500ms, font-weight 300ms;  
+    font-weight: 600;
+}
+input:focus + .inputLabel,
+input:valid + .inputLabel {
+  font-weight: 400;
+  top: 15%;
+  transform: scale(0.8);
+}
+
+
+/* Image Upload styling */
+.fileArea{
+    border: 1px solid black;
+    width: 100%;
+    padding: 1.25em;
+    border-radius: 5px;
+}
+.fileLabel{
+    display: block;
+    position: absolute;
+    top: 15%;
+    transform: scale(0.75);
+}
+
+/* Responsive styling for small screens */
+@media screen and (max-width:768px) {
+    .inputForm{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .taGroup,.moreDetails{
+        width: 100%;
+    }
+    .inputGroup{
+        margin: 1em 0;
+    }
+}

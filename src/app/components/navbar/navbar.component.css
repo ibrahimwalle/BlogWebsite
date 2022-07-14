@@ -1,0 +1,39 @@
+
+/* base Nav styling */
+.nav-item{
+    margin: 0 0.3em;
+}
+.nav-item > .btn{
+    padding: 0.25rem 1rem;
+    background-color: #212529;
+    color: white;
+    transition: background-color 300ms ease-in-out,
+}
+.nav-link{
+    padding: 0;
+    transition: font-weight 150ms ease-in-out;
+    font-weight: 600;
+}
+.navUl{
+    margin: 0 auto;
+    height: 0.1em;
+    width: 0%;
+    background-color: black;
+    border-radius: 10px;
+    transition: width 300ms ease-in-out, height 150ms ease-in-out;
+}
+
+/* Nav animations and route active */
+.nav-item:hover > .navUl{
+    width: 70%;
+}.nav-item:hover > .nav-link{
+    font-weight: 600;
+}
+.nav-item:hover > .btn{
+    background-color: #000;
+}
+.activeItem > a{
+    color: rgba(0,0,0,.7);
+}.activeItem > div{
+    width: 70%;
+}

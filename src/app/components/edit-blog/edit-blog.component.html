@@ -1,0 +1,50 @@
+<div class="container my-5">
+    <section>
+        <h1>Select Blog to Edit</h1>
+        <form class="selectForm">
+            <select class="selectInput"name="" id="">
+                <option value="">Select Blog</option>
+            </select>
+            <div class="selectGroup">
+                <input class="selectInput" type="search" name="search" required>
+                <label class="inputLabel" for="search">Search</label>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Select">
+        </form>
+    </section>
+    <section>
+        <h1>Edit selected blog</h1>
+        <div>
+            <form class="editForm">
+                <div class="taGroup">
+                    <label class="taLabel" for="body">Blog Body</label>
+                    <textarea class="inputArea" name="" id="" cols="30" rows="20" required></textarea>
+                </div>
+                <div class="moreDetails">
+                    <div class="inputGroup">
+                        <input class="inputArea" type="text" name="title" required>
+                        <label class="inputLabel" for="title">Title</label>
+                    </div>
+                    <div class="inputGroup">
+                        <input class="inputArea" type="text" name="category" required>
+                        <label class="inputLabel" for="category">Category</label>
+                    </div>
+                    <div class="inputGroup">
+                        <input class="inputArea" type="text" name="author" required>
+                        <label class="inputLabel" for="author">Author</label>
+                    </div>
+                    <div class="inputGroup">
+                        <input class="inputArea" type="text" name="author_title" required>
+                        <label class="inputLabel" for="author_title">Author Title</label>
+                    </div>
+                    <div class="inputGroup">
+                        <input class="fileArea" type="file" name="blogIMG" required>
+                        <label class="fileLabel" for="blogIMG">Upload Blog Image</label>
+                    </div>        
+                </div>
+                <input class="btn btn-primary" type="submit" value="Submit">
+                
+            </form>
+        </div>
+    </section>
+</div>

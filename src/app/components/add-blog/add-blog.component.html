@@ -1,0 +1,36 @@
+<div class="container my-5">
+    <section>
+        <h1>Create a blog</h1>
+        <div>
+            <form class="inputForm" [formGroup]="addBlogForm" (submit)="handleSubmit()">
+                <div class="taGroup">
+                    <label class="taLabel" for="body">Blog Body</label>
+                    <textarea class="inputArea" name="" id="" cols="30" rows="20" required formControlName="body"></textarea>
+                </div>
+                <div class="moreDetails">
+                    <div class="inputGroup">
+                        <input class="inputArea" type="text" name="title" required formControlName="title">
+                        <label class="inputLabel" for="title">Title</label>
+                    </div>
+                    <div class="inputGroup">
+                        <input class="inputArea" type="text" name="category" required formControlName="category">
+                        <label class="inputLabel" for="category">Category</label>
+                    </div>
+                    <div class="inputGroup">
+                        <input class="inputArea" type="text" name="author" required formControlName="author">
+                        <label class="inputLabel" for="author">Author</label>
+                    </div>
+                    <div class="inputGroup">
+                        <input class="inputArea" type="text" name="author_title" required formControlName="author_title">
+                        <label class="inputLabel" for="author_title">Author Title</label>
+                    </div>
+                    <div class="inputGroup">
+                        <input class="fileArea" type="file" name="blogIMG" required formControlName="blogIMG">
+                        <label class="fileLabel" for="blogIMG">Upload Blog Image</label>
+                    </div>        
+                </div>
+                <input class="btn btn-primary" type="submit" value="Submit">
+            </form>
+        </div>
+    </section>
+</div>
