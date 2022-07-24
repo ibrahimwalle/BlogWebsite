@@ -2,21 +2,19 @@
 /* Select Form Styling */
 .selectForm{
     display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    flex-wrap: wrap;
+    /* flex-direction: column; */
+    /* align-items: stretch; */
+    /* flex-wrap: wrap; */
 }
-.selectForm > div,select,input{
+.selectForm > ng-select{
     margin: 1em 0;
+    width: 100%;
 }
-.selectForm > div{
-    position: relative;
-}
-.selectInput{
-    border: 1px solid black;
-    border-radius: 5px;
+.ng-select-container{
     width: 100%;
     padding: 1.25em;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 
 /*Edit Form Styling */
@@ -68,7 +66,7 @@
 input:focus + .inputLabel,
 input:valid + .inputLabel {
   font-weight: 400;
-  top: 15%;
+  top: 1%;
   transform: scale(0.8);
 }
 
@@ -83,7 +81,7 @@ input:valid + .inputLabel {
 .fileLabel{
     display: block;
     position: absolute;
-    top: 15%;
+    top: 0%;
     transform: scale(0.75);
 }
 

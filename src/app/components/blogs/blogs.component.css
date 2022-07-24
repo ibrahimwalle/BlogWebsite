@@ -1,4 +1,11 @@
 
+/* section{
+    flex-wrap: wrap;
+} */
+section > div {
+    flex: 1;
+}
+
 .blogIMG{
     width: 65%;
     object-fit: contain;

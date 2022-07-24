@@ -1,44 +1,40 @@
 <div class="container my-5">
     <section>
         <h1>Select Blog to Edit</h1>
-        <form class="selectForm">
-            <select class="selectInput"name="" id="">
-                <option value="">Select Blog</option>
-            </select>
-            <div class="selectGroup">
-                <input class="selectInput" type="search" name="search" required>
-                <label class="inputLabel" for="search">Search</label>
-            </div>
-            <input class="btn btn-primary" type="submit" value="Select">
+        <form [formGroup]="selectForm" class="selectForm">
+            <ng-select (change)="handleSelect()" class="custom" name="" id="blogs" formControlName="blogID">
+                <ng-option value='no'>Select Blog</ng-option>
+                <ng-option *ngFor="let blog of blogs" value={{blog.id}}>{{blog.title}} by {{blog.author}}</ng-option>
+            </ng-select>
         </form>
     </section>
     <section>
         <h1>Edit selected blog</h1>
         <div>
-            <form class="editForm">
+            <form [formGroup]="editForm" (submit)="handleEdit()" class="editForm">
                 <div class="taGroup">
                     <label class="taLabel" for="body">Blog Body</label>
-                    <textarea class="inputArea" name="" id="" cols="30" rows="20" required></textarea>
+                    <textarea class="inputArea" name="" id="" cols="30" rows="20" required formControlName="body"></textarea>
                 </div>
                 <div class="moreDetails">
                     <div class="inputGroup">
-                        <input class="inputArea" type="text" name="title" required>
+                        <input class="inputArea" type="text" name="title" required formControlName="title">
                         <label class="inputLabel" for="title">Title</label>
                     </div>
                     <div class="inputGroup">
-                        <input class="inputArea" type="text" name="category" required>
+                        <input class="inputArea" type="text" name="category" required formControlName="category">
                         <label class="inputLabel" for="category">Category</label>
                     </div>
                     <div class="inputGroup">
-                        <input class="inputArea" type="text" name="author" required>
+                        <input class="inputArea" type="text" name="author" required formControlName="author">
                         <label class="inputLabel" for="author">Author</label>
                     </div>
                     <div class="inputGroup">
-                        <input class="inputArea" type="text" name="author_title" required>
+                        <input class="inputArea" type="text" name="author_title" required formControlName="author_title">
                         <label class="inputLabel" for="author_title">Author Title</label>
                     </div>
                     <div class="inputGroup">
-                        <input class="fileArea" type="file" name="blogIMG" required>
+                        <input class="fileArea" type="file" name="blogIMG" required formControlName="blogIMG">
                         <label class="fileLabel" for="blogIMG">Upload Blog Image</label>
                     </div>        
                 </div>

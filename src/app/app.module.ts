@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BlogDetailsComponent } from './components/blog-details/blog-details.component';
 import { AddBlogComponent } from './components/add-blog/add-blog.component';
 import { EditBlogComponent } from './components/edit-blog/edit-blog.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { EditBlogComponent } from './components/edit-blog/edit-blog.component';
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

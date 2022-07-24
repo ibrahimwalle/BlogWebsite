@@ -10,17 +10,27 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class BlogsComponent implements OnInit {
 
-  public blogs:Blog[] = []
+  public blogs:Blog[] = [];
   constructor(
     private router: Router,
     private dataSerice: DataService) { }
 
   ngOnInit(): void {
-    this.blogs = this.dataSerice.fetchBlogs()
+    this.blogs = this.dataSerice.fetchBlogs();
   }
 
   handleClick(blogID:any){
    this.router.navigate(['/blog', blogID ]);
+  }
+
+  deleteBlog(blogID:any){
+    this.dataSerice.deleteBlog(blogID);
+    this.blogs = this.dataSerice.fetchBlogs();
+  }
+
+  populateBlogs(){
+    this.dataSerice.populateBackupBlogs();
+    this.blogs = this.dataSerice.fetchBlogs();
   }
 
 }

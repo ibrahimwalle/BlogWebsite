@@ -10,21 +10,22 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class BlogDetailsComponent implements OnInit {
 
-  blogs:Blog[] = []
-  blog!: Blog
+  blogs: Blog[] = [];
+  blog!: Blog;
   id!: any
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private dataService: DataService) { }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params =>{
-    this.id = params.get('id');
-    console.log(this.id);
-    })
+      this.id = params.get('id');
+      console.log(this.id);
+    });
     this.blogs = this.dataService.fetchBlogs()
     this.blogs.forEach(el =>{
-      if (el.id = this.id){
+      if (el.id == this.id){
         this.blog = el
       }
     })

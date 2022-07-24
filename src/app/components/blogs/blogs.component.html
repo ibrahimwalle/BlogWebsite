@@ -1,5 +1,6 @@
 
 <div class="container my-5">
+    <button *ngIf="blogs.length == 0" (click)="populateBlogs()" class="btn btn-lg btn-success">Populate with Backup Blogs!</button>
     <section (click)="handleClick(blogs[0].id)" id="mainBlog" class="blog d-flex justify-content-around mb-5">
         <img class="blogIMG" src={{blogs[0].image_url}} alt="">
         <div class="blogDetails">
@@ -27,6 +28,7 @@
                     <img src={{blog.author_image}} alt="">
                     <p>{{blog.author}}<br>{{blog.author_title}}</p>
                 </span>
+                <button (click)="deleteBlog(blog.id)" class="btn btn-danger">Delete Blog</button>
             </div>
         </div>
     </section>

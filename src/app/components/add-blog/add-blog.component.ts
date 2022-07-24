@@ -29,6 +29,7 @@ export class AddBlogComponent implements OnInit {
 
   handleSubmit(){
     const newBlog :Blog = {
+      id: (Math.random()+10).toString(),
       body: this.addBlogForm.value['body'],
       title: this.addBlogForm.value['title'],
       category: this.addBlogForm.value['category'],
