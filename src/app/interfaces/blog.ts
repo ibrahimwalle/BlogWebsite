@@ -1,4 +1,5 @@
 export interface Blog {
+    _id?: string,
     id?: string,
     category: string,
     image_url?: string,

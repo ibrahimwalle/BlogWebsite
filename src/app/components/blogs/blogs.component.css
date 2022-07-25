@@ -21,17 +21,18 @@ section > div {
 .category{
     font-weight: 600;
 }
-
-#mainBlog{
-    padding: 1em;
-}
 .blog{
     border-radius: 10px;
     transition: border-color 300ms ;
     border: 1px solid;
     border-color: #fff;
     cursor: pointer;
+    max-width: 30rem;
 }
 .blog:hover{
     border-color: rgb(172, 172, 172);
+}
+#mainBlog{
+    padding: 1em;
+    max-width: none;
 }

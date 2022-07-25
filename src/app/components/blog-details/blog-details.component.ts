@@ -18,12 +18,12 @@ export class BlogDetailsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private dataService: DataService) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.activatedRoute.paramMap.subscribe(params =>{
       this.id = params.get('id');
       console.log(this.id);
     });
-    this.blogs = this.dataService.fetchBlogs()
+    this.blogs = await this.dataService.fetchBlogs()
     this.blogs.forEach(el =>{
       if (el.id == this.id){
         this.blog = el

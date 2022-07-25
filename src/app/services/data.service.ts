@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { lastValueFrom, Observable } from 'rxjs';
 import { Blog } from '../interfaces/blog';
 
 @Injectable({
@@ -6,7 +8,8 @@ import { Blog } from '../interfaces/blog';
 })
 export class DataService {
 
-  constructor() { }
+  constructor(
+    private http: HttpClient) { }
   
   backupBlogs : any[] = [
     {"id":"123",
@@ -29,8 +32,53 @@ export class DataService {
     "author_image":"../../assets/account.svg"}
   ]
 
-  blogs : any[] = []
+  blogs : any[] = [];
+  
+  // async fetchBlogs() : Promise<Blog[]>{
+  //   const uri = 'http://localhost:4000/getBlogs';
+  //   await lastValueFrom(this.http.get<any[]>(uri)).then(newBlogs=>{
+  //     console.log(newBlogs);
+  //     this.blogs = newBlogs;
+  //   }).catch(err=>{
+  //     alert(err);
+  //   })
+  //   console.log(this.blogs);
+  //   return this.blogs;
+  // }
 
+  // saveBlog(blog:Blog){
+  //   const uri = 'http://localhost:4000/createBlog';
+  //   this.http.post(uri,blog).subscribe({
+  //     next:(res)=>alert("Saved Blog :"+res),
+  //     error:(err)=>alert(err),
+  //     complete:()=>console.log('Saved new Blog'),
+  //   })
+  // }
+
+  // _saveBlog(blog:Blog): Observable<any> {
+  //   const uri = 'http://localhost:4000/createBlog';
+  //   return this.http.post(uri,blog);
+  // }
+
+  // deleteBlog(blogID:any){
+  //   const uri = 'http://localhost:4000/deleteBlog';
+  //   this.http.delete(uri,{params:{'id':blogID}}).subscribe({
+  //     next:(res)=>alert("Deleted Blog :"+blogID+res),
+  //     error:(err)=>alert(err),
+  //     complete:()=>console.log('Deleted Blog', blogID),
+  //   })
+  // }
+
+  // editBlog(blog:Blog){
+  //   const uri = 'http://localhost:4000/editBlog';
+  //   this.http.patch(uri,blog).subscribe({
+  //     next:(res)=>alert("Updated Blog :"+res),
+  //     error:(err)=>alert(err),
+  //     complete:()=>console.log('Update Blog Done'),
+  //   })
+  // }
+
+  // Local Storage Funtions:
   fetchBlogs() : Blog[]{
     let newBlogs = localStorage.getItem('blogs');
     this.blogs = newBlogs ? JSON.parse(newBlogs) : null
@@ -67,7 +115,7 @@ export class DataService {
     this.blogs.forEach(el =>{
       if (el.id == blogID){
         let index = this.blogs.indexOf(el);
-        this.blogs.splice(index);
+        this.blogs.splice(index,1);
         this.saveBlogs();
         alert('Blog deleted!')
       }

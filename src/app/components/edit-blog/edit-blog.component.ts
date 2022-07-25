@@ -26,8 +26,8 @@ export class EditBlogComponent implements OnInit {
     private dataSerice: DataService,
     private formBuilder: FormBuilder) { }
 
-  ngOnInit(): void {
-    this.blogs = this.dataSerice.fetchBlogs();
+  async ngOnInit(): Promise<void> {
+    this.blogs = await this.dataSerice.fetchBlogs();
   }
 
   handleSelect(){

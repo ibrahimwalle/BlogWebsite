@@ -15,17 +15,17 @@ export class BlogsComponent implements OnInit {
     private router: Router,
     private dataSerice: DataService) { }
 
-  ngOnInit(): void {
-    this.blogs = this.dataSerice.fetchBlogs();
+  async ngOnInit(): Promise<void> {
+    this.blogs = await this.dataSerice.fetchBlogs();
   }
 
   handleClick(blogID:any){
    this.router.navigate(['/blog', blogID ]);
   }
 
-  deleteBlog(blogID:any){
+  async deleteBlog(blogID:any){
     this.dataSerice.deleteBlog(blogID);
-    this.blogs = this.dataSerice.fetchBlogs();
+    this.blogs = await this.dataSerice.fetchBlogs();
   }
 
   populateBlogs(){
