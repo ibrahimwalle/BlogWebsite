@@ -1,13 +1,65 @@
-<div class="container my-5">
-    <span>
-        <p class="category">{{blog.category}} . {{blog.post_date}}</p>
-    </span>
-    <h1>{{blog.title}}</h1>
-    <p>{{blog.body}}</p>
-    <div class="about-author ">
-        <img class="author-img" src={{blog.author_image}} alt="">
-        <div class="card-body">
-            <p>{{blog.author}}<br>{{blog.author_title}}</p>
+<div *ngIf="blog$ | async as blog; else unavailable" >
+    <section class="blogHeader">
+        <h1 class="title">{{blog.title}}</h1>
+        <p class="category">{{blog.category}}</p>
+        <p class="description">{{blog.body}}</p>
+    </section>
+    <section class="blogBody">
+        <img class="blogImg" src={{blog.imgUrl}} alt="Blog Image">
+        <p class="bodyContent">{{blog.body}}</p>
+    </section>
+    <section class="blogFooter">
+        <div class="authorDetailsAndLinks">
+            <div class="author">
+                <img class="authorImg" src={{blog.authorImg}} alt="Author Image">
+                <span class="authorDetails">
+                    <p class="authorName">{{blog.author}} . <span class="authorTitle">{{blog.authorTitle}}</span></p>
+                    <p class="postDate">{{blog.postdate | date}}</p>
+                </span>
+            </div>
+            <ul class="authorLinks">
+                <li class="socialLink"><a href=""><img src="./assets/twitter.svg" alt="twitter"></a></li>
+                <li class="socialLink"><a href=""><img src="./assets/facebook.svg" alt="facebook"></a></li>
+                <li class="socialLink"><a href=""><img src="./assets/instagram.svg" alt="instagram"></a></li>
+            </ul>
+        </div>
+        <div class="moreBlogs">
+            <h2>More to Read!</h2>
+            <div class="extraCards" *ngFor="let blog of blogs | slice:0:3" (click)="handleClick(blog._id)">
+                <div class="extraAuthor">
+                    <img class="extraAuthorImg" src={{blog.authorImg}} alt="Author Image">
+                    <p class="extraAuthorName">{{blog.author}} . <span class="extraDate">{{blog.postdate | date}}</span></p>
+                </div>
+                <div class="extraBlog">
+                    <div class="extraDetails">
+                        <h2>{{blog.title}}</h2>
+                        <p class="extraDescription">{{blog.body | slice:0:240 }}...</p>
+                    </div>
+                    <img class="extraImg" src={{blog.imgUrl}} alt="Blog Image">
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<ng-template #unavailable>
+    <div class="moreBlogs" style="max-width: 640px;">
+        <br>
+        <h1>Blog is unavailable or an Error has occurred!</h1>
+        <br>
+        <h2>More to Read!</h2>
+        <div class="extraCards" *ngFor="let blog of blogs | slice:0:3" (click)="handleClick(blog._id)">
+            <div class="extraAuthor">
+                <img class="extraAuthorImg" src={{blog.authorImg}} alt="Author Image">
+                <p class="extraAuthorName">{{blog.author}} . <span class="extraDate">{{blog.postdate | date}}</span></p>
+            </div>
+            <div class="extraBlog">
+                <div class="extraDetails">
+                    <h2>{{blog.title}}</h2>
+                    <p class="extraDescription">{{blog.body | slice:0:240 }}...</p>
+                </div>
+                <img class="extraImg" src={{blog.imgUrl}} alt="Blog Image">
+            </div>
         </div>
     </div>
-</div>
+</ng-template>

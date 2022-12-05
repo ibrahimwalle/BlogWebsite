@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Blog } from 'src/app/interfaces/blog';
 import { DataService } from 'src/app/services/data.service';
 
@@ -11,6 +12,7 @@ import { DataService } from 'src/app/services/data.service';
 export class AddBlogComponent implements OnInit {
 
   constructor(
+    private router : Router,
     private formBuilder: FormBuilder,
     private dataService: DataService) { }
 
@@ -20,8 +22,8 @@ export class AddBlogComponent implements OnInit {
     title: '',
     category: '',
     author: '',
-    author_title: '',
-    blogIMG: ''
+    authorTitle: '',
+    blogIMG: undefined
   });
 
   ngOnInit(): void {
@@ -29,16 +31,20 @@ export class AddBlogComponent implements OnInit {
 
   handleSubmit(){
     const newBlog :Blog = {
-      id: (Math.random()+10).toString(),
+      // _id: (Math.random()+10).toString(),
       body: this.addBlogForm.value['body'],
       title: this.addBlogForm.value['title'],
       category: this.addBlogForm.value['category'],
       author: this.addBlogForm.value['author'],
-      author_title: this.addBlogForm.value['author_title'],
-      post_date: new Date().toLocaleDateString(),
-      image_url: this.addBlogForm.value['blogIMG'] 
+      authorTitle: this.addBlogForm.value['authorTitle'],
+      // postdate: new Date().toLocaleDateString(),
+      imgUrl: this.addBlogForm.value['blogIMG']? this.addBlogForm.value['blogIMG'] : undefined
     }
-    this.dataService.saveBlog(newBlog); 
+    this.dataService.saveBlog(newBlog).finally(() => 
+      this.router.navigate(['/']).then(() =>
+        window.location.reload()
+      )
+    ) 
   }
 
 }

@@ -1,35 +1,35 @@
 
-<div class="container my-5">
-    <button *ngIf="blogs.length == 0" (click)="populateBlogs()" class="btn btn-lg btn-success">Populate with Backup Blogs!</button>
-    <section (click)="handleClick(blogs[0].id)" id="mainBlog" class="blog d-flex justify-content-around mb-5">
-        <img class="blogIMG" src={{blogs[0].image_url}} alt="">
+<section class="homeHeader">
+    <img class="headImg" src="./assets/imgs/blogging.png" alt="">
+    <p class="headTitle">The Blog</p>
+</section>
+<section *ngIf="blogs" class="catalouge">
+    <div (click)="handleClick(blogs[0]._id)" class="mainBlog blog">
+        <img class="blogImg" src={{blogs[0].imgUrl}} alt="">
         <div class="blogDetails">
             <span>
-                <p class="category">{{blogs[0].category}} . {{blogs[0].post_date}}</p>
+                <p class="category">{{blogs[0].category}} . <span class="postDate">{{ blogs[0].postdate | date}}</span></p>
             </span>
-            <h3>{{blogs[0].title}}</h3>
-            <p>{{blogs[0].body}}</p>
-            <span class="d-flex">
-                <img src={{blogs[0].author_image}} alt="">
-                <p>{{blogs[0].author}}<br>{{blogs[0].author_title}}</p>
+            <h2 class="title">{{blogs[0].title}}</h2>
+            <p class="description">{{blogs[0].body}}</p>
+            <span class="author">
+                <img class="authorImg" src={{blogs[0].authorImg}} alt="">
+                <p class="authorName">{{blogs[0].author}}<br><span class="authorTitle">{{blogs[0].authorTitle}}</span></p>
             </span>
         </div>
-    </section>
-    <section class="d-flex justify-content-around">
-        <div class="blog mx-3" *ngFor="let blog of blogs" (click)="handleClick(blog.id)">
-            <img class="card-img" src={{blog.image_url}} alt="">
-            <div class="card-body">
-                <span>
-                    <p class="category">{{blog.category}} . {{blog.post_date}}</p>
-                </span>
-                <h3>{{blog.title}}</h3>
-                <p>{{blog.body}}</p>
-                <span class="d-flex">
-                    <img src={{blog.author_image}} alt="">
-                    <p>{{blog.author}}<br>{{blog.author_title}}</p>
-                </span>
-                <button (click)="deleteBlog(blog.id)" class="btn btn-danger">Delete Blog</button>
-            </div>
+    </div>
+    <div *ngFor="let blog of blogs | slice:1" (click)="handleClick(blog._id)" class="blog">
+        <img class="blogImg" src={{blog.imgUrl}} alt="">
+        <div class="blogDetails">
+            <span>
+                <p class="category">{{blog.category}} . <span class="postDate">{{ blog.postdate | date}}</span></p>
+            </span>
+            <h2 class="title">{{blog.title}}</h2>
+            <p class="description">{{blog.body}}</p>
+            <span class="author">
+                <img class="authorImg" src={{blog.authorImg}} alt="">
+                <p class="authorName">{{blog.author}}<br><span class="authorTitle">{{blog.authorTitle}}</span></p>
+            </span>
         </div>
-    </section>
-</div>
+    </div>
+</section>

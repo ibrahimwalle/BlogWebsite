@@ -10,7 +10,7 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class BlogsComponent implements OnInit {
 
-  public blogs:Blog[] = [];
+  public blogs : Blog[] | undefined = [];
   constructor(
     private router: Router,
     private dataSerice: DataService) { }
@@ -28,9 +28,9 @@ export class BlogsComponent implements OnInit {
     this.blogs = await this.dataSerice.fetchBlogs();
   }
 
-  populateBlogs(){
+  async populateBlogs(){
     this.dataSerice.populateBackupBlogs();
-    this.blogs = this.dataSerice.fetchBlogs();
+    this.blogs = await this.dataSerice.fetchBlogs();
   }
 
 }

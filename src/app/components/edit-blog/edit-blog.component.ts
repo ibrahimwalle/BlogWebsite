@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Blog } from 'src/app/interfaces/blog';
 import { DataService } from 'src/app/services/data.service';
 
@@ -18,11 +19,12 @@ export class EditBlogComponent implements OnInit {
     title: '',
     category: '',
     author: '',
-    author_title: '',
+    authorTitle: '',
     blogIMG: ''
   })
-  public blogs:Blog[] = []
+  public blogs? : Blog[] = []
   constructor(
+    private router : Router,
     private dataSerice: DataService,
     private formBuilder: FormBuilder) { }
 
@@ -35,14 +37,14 @@ export class EditBlogComponent implements OnInit {
     if(id == 'no'){
       this.editForm.reset();
     }else{
-      this.blogs.forEach(el =>{
-        if (el.id == id){
+      this.blogs?.forEach(el =>{
+        if (el._id == id){
           this.editForm.patchValue({
             body: el.body,
             title: el.title,
             category: el.category,
             author: el.author,
-            author_title: el.author_title,
+            authorTitle: el.authorTitle,
             // blogIMG: el.image_url? el.image_url : ''
           })
         }
@@ -51,17 +53,28 @@ export class EditBlogComponent implements OnInit {
   }
 
   handleEdit(){
-    const updatedBlog :Blog = {
-      id: this.selectForm.value['blogID'],
+    const updatedBlog : Blog = {
+      _id: this.selectForm.value['blogID'],
       body: this.editForm.value['body'],
       title: this.editForm.value['title'],
       category: this.editForm.value['category'],
       author: this.editForm.value['author'],
-      author_title: this.editForm.value['author_title'],
-      image_url: this.editForm.value['blogIMG'] 
+      authorTitle: this.editForm.value['authorTitle'],
+      imgUrl: this.editForm.value['blogIMG']? this.editForm.value['blogIMG'] : undefined
     }
-    this.dataSerice.editBlog(updatedBlog);
+    this.dataSerice.editBlog(updatedBlog).finally(() => 
+      this.router.navigate(['/']).then(() =>
+        window.location.reload()
+      )
+    )
   }
 
+  async deleteBlog(){
+    this.dataSerice.deleteBlog(this.selectForm.value['blogID']).finally(() => 
+      this.router.navigate(['/']).then(() =>
+        window.location.reload()
+      )
+    )
+  }
 
 }

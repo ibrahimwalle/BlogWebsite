@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { from, Observable } from 'rxjs';
 import { Blog } from 'src/app/interfaces/blog';
 import { DataService } from 'src/app/services/data.service';
 
@@ -10,25 +11,40 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class BlogDetailsComponent implements OnInit {
 
-  blogs: Blog[] = [];
-  blog!: Blog;
+  blogs: Blog[] | undefined= [];
+  blog$!: Observable<Blog | undefined>;
   id!: any
 
   constructor(
+    private router: Router,
     private activatedRoute: ActivatedRoute,
     private dataService: DataService) { }
 
   async ngOnInit(): Promise<void> {
+    this.fetcher()
+  }
+
+  async fetcher() {
     this.activatedRoute.paramMap.subscribe(params =>{
       this.id = params.get('id');
       console.log(this.id);
     });
-    this.blogs = await this.dataService.fetchBlogs()
-    this.blogs.forEach(el =>{
-      if (el.id == this.id){
-        this.blog = el
-      }
-    })
+
+    this.blog$ = from(this.dataService.fetchBlog(this.id));
+    this.blogs = await this.dataService.fetchBlogs();
+    this.blogs = this.blogs?.filter(blog => blog._id != this.id);
+
   }
+
+  async handleClick(blogID:any){
+    await this.router.navigate(['/blog', blogID ]);
+    await this.fetcher();
+    window.scroll({ 
+      top: 0, 
+      left: 0, 
+      behavior: 'smooth' 
+    });
+  }
+ 
 
 }
