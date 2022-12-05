@@ -34,6 +34,7 @@
     cursor: pointer;
     max-height: 40rem;
     max-width: 20rem;
+    margin: 0 auto;
 }
 .blog:hover{
     border-color: rgb(172, 172, 172);
@@ -105,73 +106,3 @@
 }
 
 
-/* .category{
-    font-weight: 600;
-}
-.blog{
-    border-radius: 10px;
-    transition: border-color 300ms ;
-    border: 1px solid;
-    border-color: #fff;
-    cursor: pointer;
-    max-width: 30rem;
-}
-.blog:hover{
-    border-color: rgb(172, 172, 172);
-} */
-
-
-/* cards */
-.extraCards{
-    /* width: 30%; */
-}
-.extraAuthor{
-    display: flex;
-    margin-bottom: 1rem;
-}
-.extraAuthorImg{
-    width: 2rem;
-    height: fit-content;
-    border-radius: 50%;
-    margin: auto 0;
-}
-.extraAuthorName{
-    margin: auto 0.5rem;
-    font-weight: 500;
-    font-size: medium;
-}
-.extraDate{
-    font-weight: 400;
-    color: rgb(97, 97, 97);
-}
-.extraBlog{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* justify-content: space-between; */
-    padding: 0.2rem;
-    /* margin: 1rem auto; */
-    border: 1px solid rgb(230, 230, 230, 0);
-    border-radius: 10px;
-    transition: border-color ease-in 200ms;
-    cursor: pointer;
-}
-.extraBlog:hover{
-    border-color: rgb(230, 230, 230, 1);
-}
-.extraDetails{
-    /* width: 100%; */
-}
-.extraDescription{
-    /* width: 65%; */
-    text-overflow: ellipsis;  
-    overflow: hidden;
-    white-space: wrap;
-    max-height: 5cp;
-}
-.extraImg{
-    /* width: 25%; */
-    height: fit-content;
-    border-radius: 10px;
-    /* margin: auto 0; */
-}
