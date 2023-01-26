@@ -11,6 +11,7 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class AddBlogComponent implements OnInit {
 
+
   constructor(
     private router : Router,
     private formBuilder: FormBuilder,
@@ -26,25 +27,53 @@ export class AddBlogComponent implements OnInit {
     blogIMG: undefined
   });
 
+  imageForm = this.formBuilder.group({
+
+  })
+
+  img: any;
+  fileName = '';
+  newBlog? : Blog | undefined;
+  popupContainer:string = "popupContainerClose";
+
   ngOnInit(): void {
   }
 
   handleSubmit(){
     const newBlog :Blog = {
-      // _id: (Math.random()+10).toString(),
       body: this.addBlogForm.value['body'],
       title: this.addBlogForm.value['title'],
       category: this.addBlogForm.value['category'],
       author: this.addBlogForm.value['author'],
       authorTitle: this.addBlogForm.value['authorTitle'],
-      // postdate: new Date().toLocaleDateString(),
+      postdate: new Date().toLocaleDateString(),
       imgUrl: this.addBlogForm.value['blogIMG']? this.addBlogForm.value['blogIMG'] : undefined
     }
-    this.dataService.saveBlog(newBlog).finally(() => 
-      this.router.navigate(['/']).then(() =>
-        window.location.reload()
-      )
-    ) 
+    this.dataService.saveBlog(newBlog, this.img)
+      .then(blog => {
+        if(blog){ 
+          this.newBlog = blog,
+          this.router.navigate(['/blog', this.newBlog?._id])
+          // this.popupContainer = "popupContainerOpen"
+        }
+      })
+  }
+
+  openPopup(){
+    this.popupContainer = "popupContainerOpen";
+  }
+  closePopup(){
+    this.popupContainer = "popupContainerClose";
+  }
+
+  onFileSelected(event : any){
+    const image: File = event.target.files[0];
+    const allowedTypes: String[] = ["image/gif", "image/avif", "image/jpeg", "image/png", "image/webp"];
+    if(image && allowedTypes.includes(image.type)){
+      this.img = image;
+      this.fileName = this.img.name
+      this.closePopup()
+    }
   }
 
 }

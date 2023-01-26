@@ -26,8 +26,8 @@
     resize: none
 }
 .btn{
-    margin-top: 1em;
-    padding: 1em 2em;
+    margin: 0.5em;
+    padding: 1em 1.5em;
 }
 .taLabel{
     font-weight: 600;
@@ -60,11 +60,36 @@ input:valid + .inputLabel {
     padding: 1.25em;
     border-radius: 5px;
 }
-.fileLabel{
-    display: block;
-    position: absolute;
-    top: -5%;
-    transform: scale(0.75);
+
+.popupContainerOpen{
+    display: flex;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background-color: rgb(70,70,70,0.5);
+    z-index: 2;
+}
+.popupContainerClose{
+    display: none;
+}
+.popup{
+    width: 40vh;
+    height: fit-content;
+    background-color: white;
+    border-radius: 10px;
+    margin: auto;
+    padding: 1rem;
+    padding-bottom: 0.5rem;
+}
+
+.progressBar{
+    width: 10%;
+    height: 5px;
+    background-color: black;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    align-self: flex-start;
 }
 
 /* Responsive styling for small screens */

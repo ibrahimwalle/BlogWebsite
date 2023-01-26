@@ -11,7 +11,7 @@
     <section>
         <h1>Edit selected blog</h1>
         <div>
-            <form [formGroup]="editForm" (submit)="handleEdit()" class="editForm">
+            <form [formGroup]="editForm" class="editForm">
                 <div class="taGroup">
                     <label class="taLabel" for="body">Blog Body</label>
                     <textarea class="inputArea" name="" id="" cols="30" rows="20" required formControlName="body"></textarea>
@@ -33,15 +33,25 @@
                         <input class="inputArea" type="text" name="authorTitle" required formControlName="authorTitle">
                         <label class="inputLabel" for="authorTitle">Author Title</label>
                     </div>
-                    <div class="inputGroup">
-                        <input class="fileArea" type="file" name="blogIMG" required formControlName="blogIMG">
-                        <label class="fileLabel" for="blogIMG">Upload Blog Image</label>
-                    </div>        
+                    <div class="text-center">
+                        <button class="btn btn-success" (click)="openPopup()">{{fileName || "Add Image!"}}</button>
+                    </div>
                 </div>
-                <input class="btn btn-primary" type="submit" value="Submit">
+                <button class="btn btn-primary" (click)="handleEdit()">Submit</button>
                 <button class="btn btn-danger" (click)="deleteBlog()">Delete</button>
-                
             </form>
         </div>
     </section>
 </div>
+
+<div [ngClass]="popupContainer">
+    <div class="popup text-center">
+        <h2>{{fileName || "No file"}} Selected.</h2>
+        <button class="upload-btn btn btn-warning"(click)="fileUpload.click()">Select Image!</button>
+        <br>
+        <button class="btn btn-danger" (click)="closePopup()">Cancel</button>
+    </div>
+</div>
+
+<input type="file" class="file-input"
+       (change)="onFileSelected($event)" #fileUpload>

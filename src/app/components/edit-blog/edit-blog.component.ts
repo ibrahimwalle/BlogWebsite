@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -20,13 +21,20 @@ export class EditBlogComponent implements OnInit {
     category: '',
     author: '',
     authorTitle: '',
-    blogIMG: ''
+    imgUrl: ''
   })
+
+  img: any;
+  fileName = '';
+  popupContainer:string = "popupContainerClose";
+  newBlog? : Blog | undefined;
   public blogs? : Blog[] = []
+
   constructor(
     private router : Router,
     private dataSerice: DataService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private http: HttpClient) { }
 
   async ngOnInit(): Promise<void> {
     this.blogs = await this.dataSerice.fetchBlogs();
@@ -45,7 +53,7 @@ export class EditBlogComponent implements OnInit {
             category: el.category,
             author: el.author,
             authorTitle: el.authorTitle,
-            // blogIMG: el.image_url? el.image_url : ''
+            imgUrl: el.imgUrl
           })
         }
       })
@@ -53,6 +61,8 @@ export class EditBlogComponent implements OnInit {
   }
 
   handleEdit(){
+    console.log(this.img);
+    
     const updatedBlog : Blog = {
       _id: this.selectForm.value['blogID'],
       body: this.editForm.value['body'],
@@ -60,21 +70,48 @@ export class EditBlogComponent implements OnInit {
       category: this.editForm.value['category'],
       author: this.editForm.value['author'],
       authorTitle: this.editForm.value['authorTitle'],
-      imgUrl: this.editForm.value['blogIMG']? this.editForm.value['blogIMG'] : undefined
+      imgUrl: this.editForm.value['imgUrl']? this.editForm.value['imgUrl'] : undefined
     }
-    this.dataSerice.editBlog(updatedBlog).finally(() => 
-      this.router.navigate(['/']).then(() =>
-        window.location.reload()
-      )
-    )
+    this.dataSerice.editBlog(updatedBlog, this.img)
+      .then(blog => {
+        if(blog){ 
+          this.newBlog = blog,
+          console.log(blog);
+        }else
+          alert("Please make sure the details are filled out correctly!")
+      })
   }
 
   async deleteBlog(){
-    this.dataSerice.deleteBlog(this.selectForm.value['blogID']).finally(() => 
-      this.router.navigate(['/']).then(() =>
-        window.location.reload()
-      )
-    )
+    if(!this.selectForm.value['blogID']){
+      return
+    }
+
+    this.dataSerice.deleteBlog(this.selectForm.value['blogID']).then(()=>{
+      this.dataSerice.deleteOldImage(this.editForm.value['imgUrl'])
+    })
+    // .finally(() => 
+    //   this.router.navigate(['/']).then(() =>
+    //     window.location.reload()
+    //   )
+    // )
+  }
+
+  closePopup(){
+    this.popupContainer = "popupContainerClose";
+  }
+  openPopup(){
+    this.popupContainer = "popupContainerOpen";
+  }
+
+  onFileSelected(event : any){
+    const image: File = event.target.files[0];
+    const allowedTypes: String[] = ["image/gif", "image/avif", "image/jpeg", "image/png", "image/webp"];
+    if(image && allowedTypes.includes(image.type)){
+      this.img = image;
+      this.fileName = this.img.name
+      this.closePopup()
+    }
   }
 
 }

@@ -1,22 +1,70 @@
-
 /* base Nav styling */
-.nav-item{
-    margin: 0 0.3em;
+.navbar{
+    position: sticky;
+    top: 0;
+    left: 0;
+    padding: 0 1rem;
+    height: 7vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
 }
-.nav-item > .btn{
-    padding: 0.25rem 1rem;
+.logo-toggle{
+    cursor: pointer;
+    font-size:large;
+    display: flex;
+    align-items: center;
+}
+.btn-contact{
+    height: fit-content;
     background-color: #212529;
     color: white;
     transition: background-color 300ms ease-in-out,
 }
-.nav-link{
+
+
+/* SideNav */
+.nav-container {
+    width: 500px;
+    background: none;
+    z-index: 2;
+}
+.sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.sidenav {
+    position: fixed;
+    top: 7vh;
+    height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Nav Items */
+.item-container{
+    margin: 0;
     padding: 0;
+}
+.nav-item{
+    list-style: none;
+    margin: 1.5rem 0;
+}
+.nav-link{
+    color: rgba(0,0,0,.7);
     transition: font-weight 150ms ease-in-out;
     font-weight: 600;
+    display: flex;
+    align-items: center;
 }
 .navUl{
     margin: 0 auto;
-    height: 0.1em;
+    height: 0.1rem;
     width: 0%;
     background-color: black;
     border-radius: 10px;
@@ -29,11 +77,11 @@
 }.nav-item:hover > .nav-link{
     font-weight: 600;
 }
-.nav-item:hover > .btn{
-    background-color: #000;
+.btn-contact:hover{
+    background-color: rgba(0,0,0);
 }
 .activeItem > a{
-    color: rgba(0,0,0,.7);
+    color: rgba(0,0,0,1);
 }.activeItem > div{
     width: 70%;
 }

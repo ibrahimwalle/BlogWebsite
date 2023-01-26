@@ -4,7 +4,6 @@
 }  */
 
 .homeHeader{
-    /* width: 100%; */
     height: clamp(15vh, 30vh, 30vh);
     background-image: linear-gradient(to top right, rgb(255,255,255), rgb(178, 255, 255));
     display: flex;
@@ -41,6 +40,8 @@
 } 
 .blogImg{
     width: 100%;
+    height: fit-content;
+    margin: auto;
     max-width: 20rem;
     border-radius: 10px;
 }
@@ -101,7 +102,6 @@
         gap: 3rem;
         justify-content: center;
         grid-column: span 3;
-        /* grid-row: span 2; */
     }    
 }
 
