@@ -1,27 +1,40 @@
-# Blog
+# Blog Website
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3.
+This is a Frontend project that serves Blogs from my other project [blogBackend](https://github.com/ibrahimwalle/blogBackend)!
 
-## Development server
+## Technologies
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+* Angular 13
+* Responsive Web Design
+* Flexbox
+* CSS Grid
+* Bootstrap
 
-## Code scaffolding
+## ScreenShots
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Catalogue
 
-## Build
+The Catalogue which the home page of the website
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+<img src="https://raw.githubusercontent.com/ibrahimwalle/BlogWebsite/screenshots/screenshots/Blog_Catalogue.png" width=400px/>
 
-## Running unit tests
+### Blog Page
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+The Blog page where you can read the blog
 
-## Running end-to-end tests
+<img src="https://raw.githubusercontent.com/ibrahimwalle/BlogWebsite/screenshots/screenshots/Blog_page.png" width=400px/>
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Mobile Design
 
-## Further help
+<img src="https://raw.githubusercontent.com/ibrahimwalle/BlogWebsite/screenshots/screenshots/Blog_page_Mobile.png" width=200px/>
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Create and Edit Pages
+
+The Page where you can create or edit a blog
+
+
+<img src="https://raw.githubusercontent.com/ibrahimwalle/BlogWebsite/screenshots/screenshots/Blog_Edit.png" width=400px/>
+
+Mobile Design
+
+<img src="https://raw.githubusercontent.com/ibrahimwalle/BlogWebsite/screenshots/screenshots/Blog_Create_Mobile.png" width=200px/>
