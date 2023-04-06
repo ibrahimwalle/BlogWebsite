@@ -1,5 +1,7 @@
 # Blog Website
 
+## Link: https://blog-app-dc74d.web.app/blogs
+
 This is a Frontend project that serves Blogs from my other project [blogBackend](https://github.com/ibrahimwalle/blogBackend)!
 
 ## Technologies
